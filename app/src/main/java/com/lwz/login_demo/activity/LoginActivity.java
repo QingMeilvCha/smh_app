@@ -8,8 +8,16 @@ import android.view.View;
 import android.widget.*;
 import com.lwz.login_demo.R;
 import com.lwz.login_demo.util.Base64Utils;
+import com.lwz.login_demo.util.HttpCallbackListener;
+import com.lwz.login_demo.util.HttpUtil;
 import com.lwz.login_demo.util.SharedPreferencesUtils;
 import com.lwz.login_demo.widget.LoadingDialog;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * 登录界面
@@ -176,6 +184,7 @@ public class LoginActivity extends Activity
      * 模拟登录情况
      * 用户名csdn，密码123456，就能登录成功，否则登录失败
      */
+    private static final String testPath="http://120.78.144.136:8888/user/test/";
     private void login() {
 
         //先做一些基本的判断，比如输入的用户命为空，密码为空，网络不可用多大情况，都不需要去链接服务器了，而是直接返回提示错误
@@ -190,37 +199,65 @@ public class LoginActivity extends Activity
         }
         //登录一般都是请求服务器来判断密码是否正确，要请求网络，要子线程
         showLoading();//显示加载框
-        Thread loginRunnable = new Thread() {
+        HttpUtil.sendHttpRequest(testPath, new HttpCallbackListener() {
+            @Override
+            public void onFinish(String response) {
+                showToast(response);
+                loadCheckBoxState();//记录下当前用户记住密码和自动登录的状态;
+                startActivity(new Intent(LoginActivity.this, LoginAfterActivity.class));
+                finish();//关闭页面
+            }
 
             @Override
-            public void run() {
-                super.run();
-                setLoginBtnClickable(false);//点击登录后，设置登录按钮不可点击状态
-
-
-                //睡眠3秒
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                //判断账号和密码
-                if (getAccount().equals("csdn") && getPassword().equals("123456")) {
-                    showToast("登录成功");
-                    loadCheckBoxState();//记录下当前用户记住密码和自动登录的状态;
-
-                    startActivity(new Intent(LoginActivity.this, LoginAfterActivity.class));
-                    finish();//关闭页面
-                } else {
-                    showToast("输入的登录账号或密码不正确");
-                }
-
+            public void onError(Exception response) {
+                showToast(response.getMessage());
                 setLoginBtnClickable(true);  //这里解放登录按钮，设置为可以点击
                 hideLoading();//隐藏加载框
             }
-        };
-        loginRunnable.start();
+        });
+//        Thread loginRunnable = new Thread() {
+//
+//            @Override
+//            public void run() {
+//                super.run();
+//                setLoginBtnClickable(false);//点击登录后，设置登录按钮不可点击状态
+//
+//                URL url = null;
+//                try {
+//                    url = new URL("http://120.78.144.136:8888/user/test");
+//                    HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+//                    connection.setRequestMethod("GET");
+//                    InputStream in = connection.getInputStream();
+//
+//                } catch (MalformedURLException e) {
+//                    e.printStackTrace();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+////                //睡眠3秒
+////                try {
+////                    Thread.sleep(3000);
+////                } catch (InterruptedException e) {
+////                    e.printStackTrace();
+////                }
+////
+////                //判断账号和密码
+////                if (getAccount().equals("csdn") && getPassword().equals("123456")) {
+////                    showToast("登录成功");
+////                    loadCheckBoxState();//记录下当前用户记住密码和自动登录的状态;
+////
+////                    startActivity(new Intent(LoginActivity.this, LoginAfterActivity.class));
+////                    finish();//关闭页面
+////                } else {
+////                    showToast("输入的登录账号或密码不正确");
+////                }
+////
+////                setLoginBtnClickable(true);  //这里解放登录按钮，设置为可以点击
+////                hideLoading();//隐藏加载框
+//            }
+//        };
+//        loginRunnable.start();
 
 
     }
@@ -392,11 +429,11 @@ public class LoginActivity extends Activity
     }
 
 
-    public void showToast(String msg) {
+    public void showToast(final String msg) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(LoginActivity.this, "aaa", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
 

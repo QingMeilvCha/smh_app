@@ -5,7 +5,7 @@
 
     <!--加载对话窗-->
     <style name="BaseDialog" parent="@android:style/Theme.Dialog"/>
-    <style name="Theme.Light.LoadingDialog" parent="@style/BaseDialog">
+    <style name="Theme.Light.LoadingDialog" parent="@style/BaseStyle">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>
