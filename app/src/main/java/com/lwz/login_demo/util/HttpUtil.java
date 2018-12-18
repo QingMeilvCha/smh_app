@@ -22,7 +22,6 @@ public class HttpUtil {
                     connection.setDoInput(true);
 
                     connection.setDoOutput(false);//这里设置为ture的话会自动转化为post方式
-                    String requestMethod = connection.getRequestMethod();
                     int responseCode = connection.getResponseCode();
                     if(responseCode==200){
                         InputStream in = connection.getInputStream();
