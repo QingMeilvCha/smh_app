@@ -7,6 +7,7 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.*;
 import com.lwz.login_demo.R;
+import com.lwz.login_demo.entity.UserEntity;
 import com.lwz.login_demo.util.Base64Utils;
 import com.lwz.login_demo.util.HttpCallbackListener;
 import com.lwz.login_demo.util.HttpUtil;
@@ -184,7 +185,7 @@ public class LoginActivity extends Activity
      * 模拟登录情况
      * 用户名csdn，密码123456，就能登录成功，否则登录失败
      */
-    private static final String testPath="http://120.78.144.136:8888/user/test/";
+    private static final String testPath="http://120.78.144.136:8888/user/login/";
     private void login() {
 
         //先做一些基本的判断，比如输入的用户命为空，密码为空，网络不可用多大情况，都不需要去链接服务器了，而是直接返回提示错误
@@ -198,14 +199,23 @@ public class LoginActivity extends Activity
             return;
         }
         //登录一般都是请求服务器来判断密码是否正确，要请求网络，要子线程
+
+        UserEntity userEntity=new UserEntity();
+        userEntity.setUserName(getAccount());
+        userEntity.setPassword(getPassword());
+
         showLoading();//显示加载框
-        HttpUtil.sendHttpRequest(testPath, new HttpCallbackListener() {
+        HttpUtil.post(testPath, new HttpCallbackListener() {
             @Override
             public void onFinish(String response) {
+                if(response.equals("success")){
                 showToast(response);
                 loadCheckBoxState();//记录下当前用户记住密码和自动登录的状态;
                 startActivity(new Intent(LoginActivity.this, LoginAfterActivity.class));
                 finish();//关闭页面
+                }else{
+                    onError(new Exception("登录异常！"));
+                }
             }
 
             @Override
@@ -214,52 +224,7 @@ public class LoginActivity extends Activity
                 setLoginBtnClickable(true);  //这里解放登录按钮，设置为可以点击
                 hideLoading();//隐藏加载框
             }
-        });
-//        Thread loginRunnable = new Thread() {
-//
-//            @Override
-//            public void run() {
-//                super.run();
-//                setLoginBtnClickable(false);//点击登录后，设置登录按钮不可点击状态
-//
-//                URL url = null;
-//                try {
-//                    url = new URL("http://120.78.144.136:8888/user/test");
-//                    HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-//                    connection.setRequestMethod("GET");
-//                    InputStream in = connection.getInputStream();
-//
-//                } catch (MalformedURLException e) {
-//                    e.printStackTrace();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//
-////                //睡眠3秒
-////                try {
-////                    Thread.sleep(3000);
-////                } catch (InterruptedException e) {
-////                    e.printStackTrace();
-////                }
-////
-////                //判断账号和密码
-////                if (getAccount().equals("csdn") && getPassword().equals("123456")) {
-////                    showToast("登录成功");
-////                    loadCheckBoxState();//记录下当前用户记住密码和自动登录的状态;
-////
-////                    startActivity(new Intent(LoginActivity.this, LoginAfterActivity.class));
-////                    finish();//关闭页面
-////                } else {
-////                    showToast("输入的登录账号或密码不正确");
-////                }
-////
-////                setLoginBtnClickable(true);  //这里解放登录按钮，设置为可以点击
-////                hideLoading();//隐藏加载框
-//            }
-//        };
-//        loginRunnable.start();
-
-
+        },userEntity);
     }
 
 
@@ -295,7 +260,8 @@ public class LoginActivity extends Activity
      * 获取账号
      */
     public String getAccount() {
-        return et_name.getText().toString().trim();//去掉空格
+        String name = et_name.getText().toString().trim();//去掉空格
+        return name;
     }
 
     /**
