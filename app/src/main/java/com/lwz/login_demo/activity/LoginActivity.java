@@ -7,11 +7,13 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.*;
 import com.lwz.login_demo.R;
+import com.lwz.login_demo.entity.Entity;
 import com.lwz.login_demo.entity.UserEntity;
 import com.lwz.login_demo.util.Base64Utils;
 import com.lwz.login_demo.util.HttpCallbackListener;
 import com.lwz.login_demo.util.HttpUtil;
 import com.lwz.login_demo.util.SharedPreferencesUtils;
+import com.lwz.login_demo.util.UserUtil;
 import com.lwz.login_demo.widget.LoadingDialog;
 
 import java.io.IOException;
@@ -182,10 +184,10 @@ public class LoginActivity extends Activity
     }
 
     /**
-     * 模拟登录情况
-     * 用户名csdn，密码123456，就能登录成功，否则登录失败
+     *  登录
      */
     private static final String testPath="http://120.78.144.136:8888/user/login/";
+
     private void login() {
 
         //先做一些基本的判断，比如输入的用户命为空，密码为空，网络不可用多大情况，都不需要去链接服务器了，而是直接返回提示错误
@@ -207,15 +209,19 @@ public class LoginActivity extends Activity
         showLoading();//显示加载框
         HttpUtil.post(testPath, new HttpCallbackListener() {
             @Override
-            public void onFinish(String response) {
-                if(response.equals("success")){
-                showToast(response);
+            public void onEntityFinish(Entity entity) {
+                showToast("登录成功！");
                 loadCheckBoxState();//记录下当前用户记住密码和自动登录的状态;
+
+                //本地记录user信息
+                UserUtil.userEntity=(UserEntity) entity;
+
                 startActivity(new Intent(LoginActivity.this, LoginAfterActivity.class));
                 finish();//关闭页面
-                }else{
-                    onError(new Exception("登录异常！"));
                 }
+            @Override
+            public void onMsgFinish(String msg) {
+
             }
 
             @Override

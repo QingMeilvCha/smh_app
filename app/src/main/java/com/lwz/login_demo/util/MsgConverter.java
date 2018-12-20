@@ -1,10 +1,13 @@
 package com.lwz.login_demo.util;
 
+import com.google.gson.Gson;
+import com.lwz.login_demo.entity.Entity;
+
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EntityToMap {
+public class MsgConverter {
 
     public static Map<String, Object> entityToMap(Object obj) {
              Map<String, Object> map = new HashMap<>();
@@ -24,6 +27,12 @@ public class EntityToMap {
                         e.printStackTrace();
                  }
              return map;
+    }
+
+    public static <T extends Entity> Map<String,T> stringToMap(String str, Class<T> t){
+        Gson gson=new Gson();
+        Map<String,T> map=new HashMap<>();
+        return gson.fromJson(str,map.getClass());
     }
 
 }

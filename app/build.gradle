@@ -32,4 +32,5 @@ dependencies {
     implementation files('libs/okio-1.13.0.jar')
     implementation files('libs/lombok.jar')
     implementation files('libs/javax.annotation-api-1.2.jar')
+    implementation files('libs/gson-2.8.0.jar')
 }
