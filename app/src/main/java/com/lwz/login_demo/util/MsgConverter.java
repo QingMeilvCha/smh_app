@@ -35,4 +35,9 @@ public class MsgConverter {
         return gson.fromJson(str,map.getClass());
     }
 
+    public static AdusResponse StringToAdusResponse(String response){
+        Gson gson=new Gson();
+        return gson.fromJson(response, AdusResponse.class);
+    }
+
 }

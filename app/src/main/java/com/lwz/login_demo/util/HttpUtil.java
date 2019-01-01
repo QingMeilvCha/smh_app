@@ -1,7 +1,6 @@
 package com.lwz.login_demo.util;
 
 import com.lwz.login_demo.entity.Entity;
-import com.lwz.login_demo.entity.UserEntity;
 
 import java.io.IOException;
 
@@ -27,9 +26,9 @@ public class HttpUtil {
                         .build();
                 Response response=client.newCall(request).execute();
                 String msg = response.body().string();
-
+                AdusResponse adusResponse =MsgConverter.StringToAdusResponse(msg);
                     if(listener!=null){
-                        listener.onMsgFinish(msg);
+                        listener.onMsgFinish(adusResponse.getMsg(),adusResponse.getData());
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -64,23 +63,16 @@ public class HttpUtil {
                             .post(requestBody)
                             .build();
                     Response response=client.newCall(request).execute();
-//                    String msg = response.body().string();
                     String res= response.body().string();
-                    Map<String, UserEntity> map = MsgConverter.stringToMap(res,UserEntity.class);
-
-                    if(map.get("msg").equals("success")){
+                    AdusResponse adusResponse = MsgConverter.StringToAdusResponse(res);
                         if(listener!=null){
-                            listener.onEntityFinish((Entity) map.get("body"));
+                            listener.onMsgFinish(adusResponse.getMsg());
                         }
-                    }else{
-                        throw new Exception(map.get("msg").toString());
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    if(listener!=null){
-                        listener.onError(e);
-                    }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        if(listener!=null){
+                            listener.onError(e);
+                        }
                 }
             }
         }).start();

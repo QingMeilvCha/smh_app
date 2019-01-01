@@ -1,12 +1,11 @@
 package com.lwz.login_demo.util;
 
-import com.lwz.login_demo.entity.Entity;
-
 public interface HttpCallbackListener {
 
-     void onEntityFinish(Entity entity);
+     void onEntityFinish(String responseMsg,Object o);
 
      void onError(Exception response);
 
-     void onMsgFinish(String msg);
+     void onMsgFinish(String responseMsg,Object o);
+     void onMsgFinish(String responseMsg);
 }
