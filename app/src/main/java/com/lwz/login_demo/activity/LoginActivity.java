@@ -7,20 +7,13 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.*;
 import com.lwz.login_demo.R;
-import com.lwz.login_demo.entity.Entity;
-import com.lwz.login_demo.entity.UserEntity;
+import com.lwz.login_demo.entity.user.UserEntity;
 import com.lwz.login_demo.util.Base64Utils;
-import com.lwz.login_demo.util.HttpCallbackListener;
+import com.lwz.login_demo.util.HttpCallbackAdapter;
 import com.lwz.login_demo.util.HttpUtil;
 import com.lwz.login_demo.util.SharedPreferencesUtils;
 import com.lwz.login_demo.util.UserUtil;
 import com.lwz.login_demo.widget.LoadingDialog;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 /**
  * 登录界面
@@ -207,23 +200,16 @@ public class LoginActivity extends Activity
         userEntity.setPassword(getPassword());
 
         showLoading();//显示加载框
-        HttpUtil.post(testPath, new HttpCallbackListener() {
+        HttpUtil.post(testPath, new HttpCallbackAdapter() {
             @Override
-            public void onEntityFinish(Entity entity) {
+            public void onEntityFinish(String responseMsg, Object e) {
                 showToast("登录成功！");
                 loadCheckBoxState();//记录下当前用户记住密码和自动登录的状态;
-
                 //本地记录user信息
-                UserUtil.userEntity=(UserEntity) entity;
-
+                UserUtil.userEntity=(UserEntity) e;
                 startActivity(new Intent(LoginActivity.this, LoginAfterActivity.class));
                 finish();//关闭页面
-                }
-            @Override
-            public void onMsgFinish(String msg) {
-
             }
-
             @Override
             public void onError(Exception response) {
                 showToast(response.getMessage());

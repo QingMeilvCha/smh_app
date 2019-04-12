@@ -1,8 +1,6 @@
 package com.lwz.login_demo.util;
 
-import com.lwz.login_demo.entity.Entity;
-
-import java.io.IOException;
+import com.lwz.login_demo.entity.user.Entity;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -27,12 +25,15 @@ public class HttpUtil {
                 Response response=client.newCall(request).execute();
                 String msg = response.body().string();
                 AdusResponse adusResponse =MsgConverter.StringToAdusResponse(msg);
-                    if(listener!=null){
-                        listener.onMsgFinish(adusResponse.getMsg(),adusResponse.getData());
+                if (listener != null) {
+                    if (adusResponse.getCode().equals(SysConstants.ResponseCode.SUCCESS)) {
+                        listener.onEntityFinish(adusResponse.getMsg(), adusResponse.getData());
+                    }else{
+                        listener.onError(new RuntimeException("状态码为"+ adusResponse.getCode()));
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    if(listener!=null){
+                }
+                } catch (Exception e) {
+                    if (listener != null) {
                         listener.onError(e);
                     }
                 }
@@ -40,7 +41,7 @@ public class HttpUtil {
         }).start();
     }
 
-    public static void post(final String address, final HttpCallbackListener listener, final Entity entity){
+    public static void post(final String address, final HttpCallbackListener listener, final Entity entity) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -51,28 +52,29 @@ public class HttpUtil {
                     FormBody.Builder builder = new FormBody.Builder();
 
                     Iterator<Map.Entry<String, Object>> iterator = param.entrySet().iterator();
-                    while (iterator.hasNext()){
+                    while (iterator.hasNext()) {
                         Map.Entry<String, Object> next = iterator.next();
-                        builder.add(next.getKey(),next.getValue().toString());
+                        builder.add(next.getKey(), next.getValue().toString());
                     }
                     FormBody requestBody = builder.build();
 
-                    OkHttpClient client=new OkHttpClient();
+                    OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
                             .url(address)
                             .post(requestBody)
                             .build();
-                    Response response=client.newCall(request).execute();
-                    String res= response.body().string();
+                    Response response = client.newCall(request).execute();
+                    String res = response.body().string();
                     AdusResponse adusResponse = MsgConverter.StringToAdusResponse(res);
-                        if(listener!=null){
-                            listener.onMsgFinish(adusResponse.getMsg());
+                    if (listener != null) {
+                        if (adusResponse.getCode().equals(SysConstants.ResponseCode.SUCCESS)) {
+                            listener.onEntityFinish(adusResponse.getMsg(), adusResponse.getData());
                         }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        if(listener!=null){
-                            listener.onError(e);
-                        }
+                    }
+                } catch (Exception e) {
+                    if (listener != null) {
+                        listener.onError(e);
+                    }
                 }
             }
         }).start();

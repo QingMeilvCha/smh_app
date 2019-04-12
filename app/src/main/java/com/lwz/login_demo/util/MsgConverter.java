@@ -1,7 +1,7 @@
 package com.lwz.login_demo.util;
 
 import com.google.gson.Gson;
-import com.lwz.login_demo.entity.Entity;
+import com.lwz.login_demo.entity.user.Entity;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;

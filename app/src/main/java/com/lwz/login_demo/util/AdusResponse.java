@@ -1,10 +1,13 @@
 package com.lwz.login_demo.util;
+
+import java.io.Serializable;
+
 /**
  * Created by zhouyuhang on 2018/12/24.
  * 消息实体类
  */
 
-public class AdusResponse {
+public class AdusResponse implements Serializable {
 
     private String code;
     private String msg;
