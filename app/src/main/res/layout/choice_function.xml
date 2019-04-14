@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/check_bg"
+        android:gravity="center"
+        android:text="功能选择"
+        android:textColor="@android:color/black"
+        android:textSize="8sp" />
+
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/function"
+        android:gravity="left|center_vertical"
+        android:onClick="login"
+        android:text="水准网平差处理"
+        android:textSize="24sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1.5dp"
+        android:background="@android:color/black" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/function"
+        android:gravity="left|center_vertical"
+        android:onClick="login"
+        android:text="四等水准测量"
+        android:textSize="24sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1.5dp"
+        android:background="@android:color/black" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/function"
+        android:gravity="left|center_vertical"
+        android:text="坐标计算"
+        android:textSize="24sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1.5dp"
+        android:background="@android:color/black" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/function"
+        android:gravity="left|center_vertical"
+        android:text="交会定点"
+        android:textSize="24sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1.5dp"
+        android:background="@android:color/black" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/selector_tab_color"
+            android:gravity="bottom"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:menu="@menu/navigation" />
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>
+
