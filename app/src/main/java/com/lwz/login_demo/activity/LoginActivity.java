@@ -7,6 +7,7 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.*;
 import com.lwz.login_demo.R;
+import com.lwz.login_demo.activity.base.BaseActivity;
 import com.lwz.login_demo.entity.user.UserEntity;
 import com.lwz.login_demo.util.Base64Utils;
 import com.lwz.login_demo.util.HttpCallbackAdapter;
@@ -203,11 +204,11 @@ public class LoginActivity extends Activity
         HttpUtil.post(testPath, new HttpCallbackAdapter() {
             @Override
             public void onEntityFinish(String responseMsg, Object e) {
-                showToast("登录成功！");
+                showToast(responseMsg);
                 loadCheckBoxState();//记录下当前用户记住密码和自动登录的状态;
                 //本地记录user信息
                 UserUtil.userEntity=(UserEntity) e;
-                startActivity(new Intent(LoginActivity.this, LoginAfterActivity.class));
+                startActivity(new Intent(LoginActivity.this, ChoiceFunctionActivity.class));
                 finish();//关闭页面
             }
             @Override

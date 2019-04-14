@@ -3,7 +3,7 @@
 
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#ff4081</color>
 
     <color name="transparent_half">#a0000000</color>
     <color name="transparent_half_orange">#a0ec6f1a</color>
@@ -39,7 +39,7 @@
     <color name="drop_down_unselected">#111111</color>
     <color name="black_translucent">#50000000</color>
     <!-- 浅灰色 -->
-    <color name="gray_light">#E7E7E7</color>
+    <color name="gray_light">#e7e7e7</color>
 
     <color name="mask_color">#88888888</color>
     <color name="main_bg">#10aaaaaa</color>
@@ -65,7 +65,7 @@
 
     <!--****************  bottonnavigation   ********************-->
 
-    <color name="teal">#00796B</color>
+    <color name="teal">#00796b</color>
     <color name="te">#80FCE6C9</color>
     <color name="brown">#8D6E63</color>
     <color name="blue">#2196F3</color>

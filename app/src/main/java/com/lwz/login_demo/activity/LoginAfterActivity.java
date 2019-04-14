@@ -1,16 +1,16 @@
 package com.lwz.login_demo.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import com.lwz.login_demo.R;
+import com.lwz.login_demo.activity.base.BaseActivity;
 import com.lwz.login_demo.util.SharedPreferencesUtils;
 
 /**
  * 登录成功后的界面
  */
-public class LoginAfterActivity extends Activity {
+public class LoginAfterActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

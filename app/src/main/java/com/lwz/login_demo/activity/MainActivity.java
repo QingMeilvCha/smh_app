@@ -1,15 +1,15 @@
 package com.lwz.login_demo.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import com.lwz.login_demo.R;
+import com.lwz.login_demo.activity.base.BaseActivity;
 
 /**
  * 主页面
  */
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

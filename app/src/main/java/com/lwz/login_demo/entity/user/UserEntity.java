@@ -7,7 +7,7 @@
  * @version : V1.0
  */
 
-package com.lwz.login_demo.entity;
+package com.lwz.login_demo.entity.user;
 
 import lombok.Data;
 

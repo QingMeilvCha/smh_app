@@ -25,14 +25,14 @@
             android:layout_marginTop="@dimen/dp_120">
 
         <ImageView
-                android:id="@+id/img_account"
-                android:layout_width="@dimen/dp_19"
-                android:layout_height="@dimen/dp_20"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="@dimen/margin_tiny"
-                android:layout_marginLeft="@dimen/margin_tiny"
-                android:scaleType="fitXY"
-                android:src="@mipmap/icon_login_account"/>
+            android:id="@+id/img_account"
+            android:layout_width="@dimen/dp_19"
+            android:layout_height="@dimen/dp_20"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/margin_tiny"
+            android:layout_marginBottom="@dimen/margin_tiny"
+            android:scaleType="fitXY"
+            android:src="@drawable/user_info" />
 
         <EditText
                 android:id="@+id/et_account"
@@ -66,14 +66,14 @@
             android:layout_marginRight="@dimen/margin_large">
 
         <ImageView
-                android:id="@+id/img_pw"
-                android:layout_width="@dimen/dp_18"
-                android:layout_height="@dimen/dp_20"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="@dimen/margin_tiny"
-                android:layout_marginLeft="@dimen/margin_tiny"
-                android:scaleType="fitXY"
-                android:src="@mipmap/icon_login_pw"/>
+            android:id="@+id/img_pw"
+            android:layout_width="@dimen/dp_18"
+            android:layout_height="@dimen/dp_20"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/margin_tiny"
+            android:layout_marginBottom="@dimen/margin_tiny"
+            android:scaleType="fitXY"
+            android:src="@drawable/password" />
 
         <EditText
                 android:id="@+id/et_password"

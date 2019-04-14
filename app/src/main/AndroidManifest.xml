@@ -31,6 +31,8 @@
 
         <activity android:name=".activity.LoginAfterActivity"/>
 
+        <activity android:name=".activity.ChoiceFunctionActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+
     </application>
 
 </manifest>
