@@ -8,9 +8,11 @@ import lombok.Data;
  */
 @Data
 public class LineClass {
-    public String LID;            //观测边号
-    public LPointClass SP;        //起点
-    public LPointClass EP;        //终点
-    public double dH;             //观测高差
-    public double Distance;       //观测距离
+    public String lineDataId;
+    public String lid;            //观测边号
+    public LPointClass sPid;        //起点
+    public LPointClass ePid;        //终点
+    public double dh;             //观测高差
+    public double distance;       //观测距离
+    public Integer mark;
 }

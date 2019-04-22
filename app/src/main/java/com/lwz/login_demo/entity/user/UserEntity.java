@@ -9,6 +9,11 @@
 
 package com.lwz.login_demo.entity.user;
 
+import com.google.gson.reflect.TypeToken;
+
+import java.io.Serializable;
+import java.lang.reflect.Type;
+
 import lombok.Data;
 
 /**
@@ -18,7 +23,7 @@ import lombok.Data;
  * @date 2018-12-12 16:28:51
  */
 @Data
-public class UserEntity implements Entity{
+public class UserEntity implements Serializable, Entity{
 
 	/**
 	 * @Fields serialVersionUID
@@ -61,7 +66,7 @@ public class UserEntity implements Entity{
 
 	private Integer mark;
 
-//	public void CheckUserEntityParam() throws Exception {
+	//	public void CheckUserEntityParam() throws Exception {
 //		if(userName.trim()==null){
 //			throw new Exception("用户名不能为空！");
 //		}

@@ -7,7 +7,7 @@
         android:theme="@style/BaseStyle"
         android:networkSecurityConfig="@xml/network_security_config"
         >
-        <activity android:name=".activity.MainActivity"/>
+        <activity android:name=".activity.MyTaskActivity"/>
             <!--android:label="@string/app_name"-->
             <!--android:launchMode="singleTask"-->
             <!--&gt;-->
@@ -30,7 +30,8 @@
         </activity>
 
         <activity android:name=".activity.LoginAfterActivity"/>
-
+        <activity android:name=".activity.TaskInfoActivity"/>
+        <activity android:name=".activity.TaskDetailActivity"/>
         <activity android:name=".activity.ChoiceFunctionActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
 
     </application>

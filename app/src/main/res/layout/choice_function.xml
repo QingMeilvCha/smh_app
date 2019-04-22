@@ -11,18 +11,18 @@
         android:background="@color/check_bg"
         android:gravity="center"
         android:text="功能选择"
-        android:textColor="@android:color/black"
-        android:textSize="8sp" />
+        android:textColor="@android:color/black" />
 
 
     <Button
+        android:id="@+id/btn_adjustLevel"
         android:layout_width="fill_parent"
         android:layout_height="90dp"
         android:layout_marginTop="2dp"
         android:background="@color/white"
         android:drawableLeft="@drawable/function"
         android:gravity="left|center_vertical"
-        android:onClick="login"
+        android:onClick="nextActivity"
         android:text="水准网平差处理"
         android:textSize="24sp" />
 
@@ -38,7 +38,6 @@
         android:background="@color/white"
         android:drawableLeft="@drawable/function"
         android:gravity="left|center_vertical"
-        android:onClick="login"
         android:text="四等水准测量"
         android:textSize="24sp" />
 

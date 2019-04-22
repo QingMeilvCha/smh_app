@@ -22,8 +22,8 @@ public class SysConstants {
      * 测量类别
      */
     public static class SmType{
-        public static final String SHUIZHUN="水准测量";
-        public static final String DAOXAIN="导线测量";
+        public static final String SHUIZHUN="水准网平差";
+        public static final String DAOXAIN="四等水准测量";
     }
 
     /**
@@ -32,5 +32,19 @@ public class SysConstants {
     public static class KValue{
         public static final Integer k1=4787;
         public static final Integer k2=4687;
+    }
+
+    /**
+     * 后台接口
+     */
+    public static class SmhUrl{
+        public static final String aliyun_ip="120.78.144.136";
+        public static final String localhost="10.0.2.2";
+        public static final String server_ip=localhost;
+
+
+        public static final String LOGIN_URL="http://"+server_ip+":8888/user/login/";
+        public static final String GET_TASK_URL="http://"+server_ip+":8888/userTask/getTaskByType";
+        public static final String POST_SENDDATA_URL="http://"+server_ip+":8888/userTask/recieveData";
     }
 }

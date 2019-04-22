@@ -2,44 +2,29 @@ package com.lwz.login_demo.util;
 
 import java.io.Serializable;
 
+import lombok.Data;
+
 /**
  * Created by zhouyuhang on 2018/12/24.
  * 消息实体类
  */
-
-public class AdusResponse implements Serializable {
+@Data
+public class AdusResponse<T> implements Serializable {
 
     private String code;
     private String msg;
-    private Object data;
+    private T data;
+    private String dataJson;
 
-    public AdusResponse(String code, String msg, Object data) {
+    public AdusResponse(String code, String msg,T data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
+    public AdusResponse(String code, String msg, String dataJson) {
         this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
         this.msg = msg;
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
+        this.dataJson=dataJson;
     }
 }

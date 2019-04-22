@@ -7,14 +7,14 @@ import lombok.Data;
  */
 @Data
 public class LPointClass {
-    public String PID;
-    public double X;
-    public double Y;
-    public double H;
+    public String pid;
+    public String pointDataId;
+    public double x;
+    public double y;
+    public double h;
     //是否是控制点
-    public boolean IsControlP;
+    public boolean isControlP;
     //是否有初始高程
-    public boolean IsH0;
-    //是否是公共点
-    public boolean IsCommonP;
+    public boolean isH0;
+    public Integer mark;
 }

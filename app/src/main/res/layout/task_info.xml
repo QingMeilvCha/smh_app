@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/task_name"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/bg_normal_gray"
+        android:gravity="center_vertical|start"
+        android:hint="请输入任务名"
+        android:text="" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="right"
+        android:background="@drawable/yuan_button"
+        android:onClick="calculate"
+        android:text="计算" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/bg_normal_gray"
+        android:onClick="addPointRow"
+        android:text="添加点元素" />
+
+    <TableLayout
+        android:id="@+id/point_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/PPid"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:background="@drawable/textview_border"
+                android:gravity="left|center"
+                android:text="点名" />
+
+            <TextView
+                android:id="@+id/PPH"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:background="@drawable/textview_border"
+                android:gravity="left|center"
+                android:text="高程/m" />
+
+            <TextView
+                android:id="@+id/PP_Know"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:background="@drawable/textview_border"
+                android:gravity="left|center"
+                android:text="已知点标志" />
+
+            <TextView
+                android:id="@+id/PP_Un_Konw"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:background="@drawable/textview_border"
+                android:gravity="left|center"
+                android:text="未知点序号" />
+            </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_normal_gray"
+        android:onClick="addLineRow"
+        android:text="添加边元素" />
+    <TableLayout
+        android:id="@+id/line_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/LLid"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/textview_border"
+                android:gravity="left|center"
+                android:text="边号" />
+
+            <TextView
+                android:id="@+id/Lstart_point"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/textview_border"
+                android:gravity="left|center"
+                android:text="起点号" />
+
+            <TextView
+                android:id="@+id/Lend_point"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/textview_border"
+                android:gravity="left|center"
+                android:text="终点号" />
+
+            <TextView
+                android:id="@+id/LH_diff"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/textview_border"
+                android:gravity="left|center"
+                android:text="高差/m" />
+
+            <TextView
+                android:id="@+id/LL_length"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/textview_border"
+                android:gravity="left|center"
+                android:text="线路长/km" />
+        </TableRow>
+
+    </TableLayout>
+
+
+</LinearLayout>

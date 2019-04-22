@@ -1,16 +1,18 @@
 package com.lwz.login_demo.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lwz.login_demo.R;
 
-public class ChoiceFunctionActivity  extends AppCompatActivity {
+public class ChoiceFunctionActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
 
@@ -50,6 +52,11 @@ public class ChoiceFunctionActivity  extends AppCompatActivity {
                 Toast.makeText(ChoiceFunctionActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+
+    public void nextActivity(View view){
+        startActivity(new Intent(this,MyTaskActivity.class));
     }
 
 }

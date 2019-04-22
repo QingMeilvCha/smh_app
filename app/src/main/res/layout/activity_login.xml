@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#fff"
         android:orientation="vertical">
 
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="登录界面"
-            android:gravity="center"
-            android:textSize="30sp"
-            />
-    <View android:layout_width="match_parent" android:layout_height="@dimen/dp_1"
-          android:background="@color/orange_main"
-            />
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="登录界面" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@android:color/black" />
 
     <RelativeLayout
             android:layout_width="match_parent"
@@ -51,12 +52,12 @@
                 android:textSize="@dimen/text_size_normal"/>
 
         <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/line_height"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="@dimen/margin_normal"
-                android:layout_toRightOf="@+id/img_account"
-                android:background="@color/orange_light"/>
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/margin_normal"
+            android:layout_toRightOf="@+id/img_account"
+            android:background="@android:color/black" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -100,13 +101,14 @@
                 android:layout_alignParentRight="true"
                 android:scaleType="fitXY"
                 />
+
         <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/line_height"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="@dimen/margin_normal"
-                android:layout_toRightOf="@+id/img_pw"
-                android:background="@color/orange_light"/>
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/margin_normal"
+            android:layout_toRightOf="@+id/img_pw"
+            android:background="@android:color/black" />
     </RelativeLayout>
     <LinearLayout
             android:layout_width="match_parent"
@@ -119,26 +121,30 @@
             android:orientation="horizontal"
             android:gravity="center"
             >
+
         <CheckBox
-                android:id="@+id/checkBox_password"
-                android:padding="@dimen/dp_10"
-                android:textSize="@dimen/text_size_normal"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="@string/check_password"
-                android:textColor="@color/top_bar_normal_bg" android:checked="false"/>
+            android:id="@+id/checkBox_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:checked="false"
+            android:padding="@dimen/dp_10"
+            android:text="@string/check_password"
+            android:textColor="@color/tv_gray_deep"
+            android:textSize="@dimen/text_size_normal" />
+
         <CheckBox
-                android:id="@+id/checkBox_login"
-                android:padding="@dimen/dp_10"
-                android:textSize="@dimen/text_size_normal"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="@string/check_login"
-                android:textColor="@color/top_bar_normal_bg" android:checked="false"/>
+            android:id="@+id/checkBox_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:checked="false"
+            android:padding="@dimen/dp_10"
+            android:text="@string/check_login"
+            android:textColor="@color/tv_gray_deep"
+            android:textSize="@dimen/text_size_normal" />
 
     </LinearLayout>
     <Button

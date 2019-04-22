@@ -6,15 +6,21 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.*;
+
+import com.google.gson.reflect.TypeToken;
 import com.lwz.login_demo.R;
 import com.lwz.login_demo.activity.base.BaseActivity;
 import com.lwz.login_demo.entity.user.UserEntity;
 import com.lwz.login_demo.util.Base64Utils;
 import com.lwz.login_demo.util.HttpCallbackAdapter;
 import com.lwz.login_demo.util.HttpUtil;
+import com.lwz.login_demo.util.MsgConverter;
 import com.lwz.login_demo.util.SharedPreferencesUtils;
+import com.lwz.login_demo.util.SysConstants;
 import com.lwz.login_demo.util.UserUtil;
 import com.lwz.login_demo.widget.LoadingDialog;
+
+import java.util.Map;
 
 /**
  * 登录界面
@@ -180,8 +186,6 @@ public class LoginActivity extends Activity
     /**
      *  登录
      */
-    private static final String testPath="http://120.78.144.136:8888/user/login/";
-
     private void login() {
 
         //先做一些基本的判断，比如输入的用户命为空，密码为空，网络不可用多大情况，都不需要去链接服务器了，而是直接返回提示错误
@@ -201,13 +205,13 @@ public class LoginActivity extends Activity
         userEntity.setPassword(getPassword());
 
         showLoading();//显示加载框
-        HttpUtil.post(testPath, new HttpCallbackAdapter() {
+        HttpUtil.post(SysConstants.SmhUrl.LOGIN_URL, new HttpCallbackAdapter() {
             @Override
-            public void onEntityFinish(String responseMsg, Object e) {
+            public void onEntityFinish(String responseMsg, String dataJson) {
                 showToast(responseMsg);
                 loadCheckBoxState();//记录下当前用户记住密码和自动登录的状态;
                 //本地记录user信息
-                UserUtil.userEntity=(UserEntity) e;
+                UserUtil.userEntity= MsgConverter.parseData(dataJson,new TypeToken<UserEntity>(){}.getType());
                 startActivity(new Intent(LoginActivity.this, ChoiceFunctionActivity.class));
                 finish();//关闭页面
             }
